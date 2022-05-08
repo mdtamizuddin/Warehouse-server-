@@ -3,7 +3,10 @@ const cors = require('cors');
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
-require('dotenv').config();
+
+require('dotenv').config()
+console.log(process.env.DB_PASS)
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -15,8 +18,9 @@ app.use(express.json());
 // user:dbuser1
 // password:xLeDtsSERnlIPrJ3
 
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.f3xgc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
-const uri = `mongodb+srv://inventory:0dhpeBHXStJSZmRk@cluster0.f3xgc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function run(){
