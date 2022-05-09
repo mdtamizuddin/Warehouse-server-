@@ -20,7 +20,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
     try{
         await client.connect();
-        const productCollection = client.db('Inventory').collection('product');
+        const productCollection = client.db('inventory').collection('product');
 
         // get product
         app.get('/product', async(req, res) =>{
@@ -82,9 +82,9 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) =>{
-    res.send('Running My Node CRUD Server');
+    res.send('Inventory Management Server Running');
 });
 
 app.listen(PORT, () =>{
-    console.log('Inventory server Running');
+    console.log(`Inventory Management Server Running PORT ${PORT}`);
 })
