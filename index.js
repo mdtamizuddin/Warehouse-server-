@@ -1,23 +1,20 @@
-const express = require('express');
+const express = require('express')
 const cors = require('cors');
-
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const ObjectId = require('mongodb').ObjectId;
-
 require('dotenv').config()
-console.log(process.env.DB_PASS)
+const { MongoClient, ServerApiVersion ,ObjectId } = require('mongodb');
 
-const app = express();
-const port = process.env.PORT || 5000;
+// All imports End here
 
-// use middleware
+const app = express()
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT|| 5100 ;
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.f3xgc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 
+// mongodb connection uri
+const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.fcnm4.mongodb.net/lineargraphic?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function run(){
@@ -88,6 +85,6 @@ app.get('/', (req, res) =>{
     res.send('Running My Node CRUD Server');
 });
 
-app.listen(port, () =>{
-    console.log('CRUD Server is running');
+app.listen(PORT, () =>{
+    console.log('Inventory server Running');
 })
